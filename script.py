@@ -78,8 +78,9 @@ if __name__ == '__main__':
                 if line.startswith('.'):
                     start_str = re.search(DOT_REGEX, line).group()
                     count = len(start_str)
-                    replace_str = '+' if next_line and next_line.startswith('.') and len(
-                        re.search(DOT_REGEX, next_line).group()) > count else '-'
+                    replace_str = '+' if next_line and ((next_line.startswith('.') and len(
+                        re.search(DOT_REGEX, next_line).group()) > count) or
+                                                        re.match(r'^\w+', next_line)) else '-'
                     prev_count = count
                     indent = '  ' * count
 
