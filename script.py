@@ -42,10 +42,15 @@ def generate_sub_heading(asterisk_count, prev_heading):
     :return str:
     """
     indexes = prev_heading.split('.')
-    if len(indexes) < asterisk_count:
+    index_len = len(indexes)
+
+    if index_len < asterisk_count:
         indexes += ['1'] * (asterisk_count - len(indexes))
+    elif index_len == asterisk_count:
+        indexes[-1] = str(int(indexes[-1]) + 1)
 
     return '.'.join(indexes)
+
 
 
 if __name__ == '__main__':
